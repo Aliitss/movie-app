@@ -1,31 +1,42 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 /* COMPONENTS */
-import Login from './components/Login/Login.jsx';
-import Listado from './components/Listado/Listado.jsx';
-import Header from './components/Header/Header.jsx';
-import Footer from './components/Footer/Footer.jsx';
-import Detail from './components/Details/Detail.jsx';
-import Results from './components/Resultados/Results.jsx';
+import Login from "./components/Login/Login.jsx";
+import Listado from "./components/Listado/Listado.jsx";
+import Header from "./components/Header/Header.jsx";
+import Footer from "./components/Footer/Footer.jsx";
+import Detail from "./components/Details/Detail.jsx";
+import Results from "./components/Resultados/Results.jsx";
+import Favourites from "./components/Favourites/Favourites.jsx";
+import Contact from "./components/Contact/Contact.jsx";
 
 /* STYLES BOOTSTRAP */
-import './css/bootstrap.min.css'
-import './css/app.css'
+import "./css/bootstrap.min.css";
+import "./css/app.css";
 
 function App() {
+  const [favourites, setFavourites] = useState([]);
 
-  const favMovies = localStorage.getItem('favs');
+  useEffect(() => {
+    const favInLocal = localStorage.getItem("favs");
+
+    if (favInLocal !== null) {
+      const favArray = JSON.parse(favInLocal);
+      setFavourites(favArray);
+    }
+  }, []);
+
+  const favMovies = localStorage.getItem("favs");
 
   let moviesInFavs;
 
   if (favMovies === null) {
     moviesInFavs = [];
   } else {
-    moviesInFavs = JSON.parse(favMovies)
+    moviesInFavs = JSON.parse(favMovies);
   }
 
-  console.log(moviesInFavs)
-  
   const addOrRemoveFavs = (e) => {
     const btn = e.target;
     const parent = btn.parentElement;
@@ -46,19 +57,21 @@ function App() {
     if (!moviesInArray) {
       moviesInFavs.push(movieData);
       localStorage.setItem("favs", JSON.stringify(moviesInFavs));
+      setFavourites(moviesInFavs);
       console.log("Movie has been added");
     } else {
       let removedMovies = moviesInFavs.filter((el) => {
         return el.id !== movieData.id;
       });
       localStorage.setItem("favs", JSON.stringify(removedMovies));
+      setFavourites(removedMovies);
       console.log("Movie has been deleted");
     }
   };
 
   return (
     <>
-      <Header />
+      <Header favourites={favourites} />
       <div className="container mt-3">
         <Routes>
           <Route exact path="/" element={<Login />} />
@@ -67,7 +80,20 @@ function App() {
             element={<Listado addOrRemoveFavs={addOrRemoveFavs} />}
           />
           <Route path="/detail" element={<Detail />} />
-          <Route path="/results" element={<Results />} />
+          <Route
+            path="/results"
+            element={<Results addOrRemoveFavs={addOrRemoveFavs} />}
+          />
+          <Route
+            path="/favourites"
+            element={
+              <Favourites
+                favourites={favourites}
+                addOrRemoveFavs={addOrRemoveFavs}
+              />
+            }
+          />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </div>
       <Footer />
