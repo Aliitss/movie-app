@@ -1,0 +1,45 @@
+header {
+    background: #7E4BFF;
+    padding: 2rem 0;
+    text-align: left;
+    font-size: 1rem;
+}
+
+header a {
+    color: black;
+    text-decoration: none;
+}
+
+footer li {
+    color: #7E4BFF;
+}
+
+.header__logo {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    margin-left: 1.5rem;
+    display: inline-block;
+    color: #FF9D73;
+}
+
+.permalinks_header {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin: -55px 0px 1px 23px;
+    gap: 2rem;
+}
+
+/* ===================SMALL DEVICES =====================*/
+
+@media screen and (max-width: 600px) {
+    .permalinks {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .footer__socials {
+        margin-bottom: 2.6rem;
+    }
+}

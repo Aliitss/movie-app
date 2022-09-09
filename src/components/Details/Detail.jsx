@@ -10,6 +10,9 @@ import axios from "axios";
 // cute Alerts
 import sweetAl from "@sweetalert/with-react";
 
+//style
+import './Details.css'
+
 function Detail() {
   let token = sessionStorage.getItem("token"); //el sessionStorage permite proteger las rutas, además de eso permite eliminar el token una vez se cierre la sesión del navegador.
 
@@ -41,20 +44,23 @@ function Detail() {
       )}
       {movieDetail && (
         <>
-          <h1>{movieDetail.title}</h1>
-          <div className="row">
-            <div className="col-4">
+          <div className="detail-container">
+          <h1 className="detail-title">{movieDetail.title}</h1>
+            <div className="detail-img">
               <img
                 src={`https://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`}
                 alt="..."
-                className="img-fluid mb-4 mt-5"
+                className="image-back"
               />
             </div>
-            <div className="col-8">
-              <h5>Release date: {movieDetail.release_date}</h5>
-              <h5>Review:</h5>
+            <div className="detail-info">
+              <h2 className="subtitles" >Release date:</h2> 
+              <p> {movieDetail.release_date} </p>
+              <br/>
+              <h2 className="subtitles">Review:</h2>
               <p>{movieDetail.overview}</p>
-              <h5>Genres:</h5>
+              <br/>
+              <h2 className="subtitles">Genres:</h2>
               <ul>
                 {movieDetail.genres.map((oneMovie) => (
                   <li key={oneMovie.id}>{oneMovie.name}</li>

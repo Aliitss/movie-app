@@ -4,25 +4,42 @@ import { Link } from "react-router-dom";
 //Components
 import Buscador from "../Buscador/Buscador";
 
+//Styles
+import "./Header.css";
+
 function Header(props) {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg bg-dark">
-        <div className="container-fluid">
-          <Link className="navbar-brand text-bg-dark p-3" to="#">
+      <nav>
+        <div>
+        <Link to="/list" className="header__logo">
+          Movie App
+        </Link>
+
+        <ul className="permalinks_header">
+          <li>
+            <Link to="/" aria-current="page">Login</Link>
+          </li>
+          <li>
+            <Link to="/list">Home</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+          <li>
+            <Link to="/favourites">Favourites</Link>
+          </li>
+          <li>
+            <span className="text-success">{props.favourites.length > 0 && props.favourites.length}</span>
+          </li>
+        </ul>
+        <Buscador />
+
+        {/* 
+        <div className="movie_app">
+          <Link to="#">
             Movie App
           </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
@@ -55,6 +72,7 @@ function Header(props) {
             </ul>
             <Buscador />
           </div>
+        </div> */}
         </div>
       </nav>
     </header>

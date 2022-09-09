@@ -3,6 +3,9 @@ import axios from "axios"; //axios hace la llamada a la api (cual sea)
 import sweetAl from "@sweetalert/with-react"; //alertas agradables a la vista. Estas dependencias se llaman, SWEET ALERT y SWEET ALERT WITH REACT son necesarias ambas para poder trabajar con react
 import { useNavigate, Navigate } from "react-router-dom";
 
+//style
+import './Login.css'
+
 function Login() {
   const navigate = useNavigate();
 
@@ -43,20 +46,20 @@ function Login() {
   return (
     <>
       {token && <Navigate to="/list" />}
-
-      <h1>Login</h1>
-      <form onSubmit={submitHandler}>
+      
+      <form className="contenedor" onSubmit={submitHandler}>
+        <h1 className="login" >Login</h1>
         <label>
-          <span>Email address:</span> <br />
-          <input type="text" name="email" />
+          <span className="title">Email address:</span> <br />
+          <input type="text" name="email" className="container1" placeholder="   challenge@alkemy.org"/>
         </label>
         <br />
-        <label>
-          <span>Password:</span> <br />
-          <input type="password" name="password" />
+        <label >
+          <span className="title">Password:</span> <br />
+          <input type="password" name="password" className="container1" placeholder="   react"/>
         </label>
         <br />
-        <button type="submit">Submit</button>
+        <button className="btn" type="submit">Submit</button>
       </form>
     </>
   );

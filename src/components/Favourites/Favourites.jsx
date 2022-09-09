@@ -2,30 +2,36 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Navigate } from 'react-router-dom'
 
-let token = sessionStorage.getItem("token");
+//styles
+import './Favourites.css'
+
 
 function Favourites(props) {
+
+  let token = sessionStorage.getItem("token");
+
   return (
     <>
 
       {!token && <Navigate to="/" />}
-      <div className="row m-1">
-        <h1>Favourites section</h1>
+      <h1 className="favourite-page">Favourites section</h1>
+
+      <div className="card-favourites">
         {!props.favourites.length && <div>You have no favourite movies 💔</div>}
 
         {props.favourites.map((movie, index) => {
           return (
-            <div className="col-3" key={index}>
-              <div className="card my-5">
+            <div className="container-info" key={index}>
+              <div>
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${movie.imgURL}`}
-                  className="card-img-top"
+                  className="card-img"
                   alt="..."
                 />
                 <button
                   onClick={props.addOrRemoveFavs}
                   data-movie-id={movie.id}
-                  className="btn-favourite"
+                  className="favourite"
                 >
                   🖤
                 </button>
@@ -36,7 +42,7 @@ function Favourites(props) {
                   </p>
                   <Link
                     to={`/detail?movieID=${movie.id}`}
-                    className="btn btn-primary"
+                    className="btn"
                   >
                     Get detail
                   </Link>

@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 //Alertas
 import sweetAl from "@sweetalert/with-react";
+
+//style
+import './Buscador.css'
 
 function Buscador() {
   const navigate = useNavigate();
@@ -14,21 +17,21 @@ function Buscador() {
       sweetAl(<h5>You need to type the movie name 😒</h5>);
     } else {
       e.target.keyword.value = "";
-      navigate(`/results?keyword=${keyword}`);
+     navigate(`/results?keyword=${keyword}`);      
     }
   };
 
   return (
-    <form className="d-flex align-items-center" onSubmit={submitHandler}>
+    <form className="d-flex align-items-center" onSubmit={submitHandler} >
       <label className="form-label mb-0">
         <input
           type="text"
-          className="form-control"
+          className="search"
           name="keyword"
           placeholder="Movie title..."
         />
       </label>
-      <button className="btn btn-primary ms-2">Search</button>
+      <button className="btn2">Search</button>
     </form>
   );
 }

@@ -1,9 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
 import { Link, Navigate } from "react-router-dom";
 
+//alertas por errores
 import sweetAl from "@sweetalert/with-react"; //alertas agradables a la vista. Estas dependencias se llaman, SWEET ALERT y SWEET ALERT WITH REACT son necesarias ambas para poder trabajar con react
+
+//style
+import './Listado.css'
+
+import noImage from '../../assets/890.png'
 
 function Listado(props) {
   let token = sessionStorage.getItem("token");
@@ -28,20 +33,20 @@ function Listado(props) {
     <>
       {!token && <Navigate to="/" />}
 
-      <div className="row m-1">
+      <div className="card">
         {movieList.map((movie, index) => {
           return (
-            <div className="col-3" key={index}>
-              <div className="card mt-5 mb-4">
+            <div className="container-info" key={index}>
+              <div>
                 <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  className="card-img-top"
+                  src={!`https://image.tmdb.org/t/p/w500/${movie.poster_path}` ? {noImage} : `https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  className="card-img"
                   alt="..."
                 />
                 <button
                   onClick={props.addOrRemoveFavs}
                   data-movie-id={movie.id}
-                  className="btn-favourite">
+                  className="favourite">
                   🖤
                 </button>
                 <div className="card-body">

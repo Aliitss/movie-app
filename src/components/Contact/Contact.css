@@ -1,0 +1,55 @@
+.title-contact2 {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 40px;
+    
+}
+
+
+.container.contact__container {
+    display: grid;
+    grid-template-columns: 25% 50%;
+}
+
+.contact__options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.8rem;
+    width: fit-content;
+    margin-bottom: 4rem;
+    margin-left: 36rem;
+    margin-top: 3rem;
+}
+
+.contact__option {
+    background: #7E4BFF;
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+    text-align: center;
+    border: 1px solid #7E4BFF;
+    transition: all 400ms ease;
+    width: 15rem;
+    color: #fff;
+}
+
+.contact__option:hover {
+    background: transparent;
+    border-color: #402191;
+    color: #402191;
+}
+
+.contact__option-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.contact__option a {
+    margin-top: 0.7rem;
+    display: inline-block;
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: #402191;
+}
+

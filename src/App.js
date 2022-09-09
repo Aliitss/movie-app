@@ -12,7 +12,6 @@ import Favourites from "./components/Favourites/Favourites.jsx";
 import Contact from "./components/Contact/Contact.jsx";
 
 /* STYLES BOOTSTRAP */
-import "./css/bootstrap.min.css";
 import "./css/app.css";
 
 function App() {
@@ -82,7 +81,7 @@ function App() {
           <Route path="/detail" element={<Detail />} />
           <Route
             path="/results"
-            element={<Results addOrRemoveFavs={addOrRemoveFavs} />}
+            element={<Results />}
           />
           <Route
             path="/favourites"
